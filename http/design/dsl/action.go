@@ -5,14 +5,20 @@ import (
 	"github.com/goadesign/goa/dslengine"
 )
 
-// Action implements the action definition DSL. Action definitions describe HTTP endpoints including
-// the URL, HTTP method and request parameters (via path wildcards or query strings) and payload
-// (data structure describing the request HTTP body). An action belongs to a resource and "inherits"
-// default values from the resource definition including the URL path prefix, default response media
-// type and default payload attribute properties (inherited from the attribute with identical name
-// in the resource default media type). Action definitions also describe all the possible responses
-// including the HTTP status, headers and body. Here is an example showing all the possible
-// sub-definitions:
+// Action describes a single resource action including the action URL path, HTTP method and request
+// parameters (via path wildcards or query strings) and payload (data structure describing the
+// request HTTP body). Action also describe the possible responses including their HTTP status,
+// headers and body via media types.
+//
+// An action belongs to a resource and "inherits" default values from the resource definition
+// including the URL path prefix, default response media type and default payload attribute
+// properties (inherited from the attribute with identical name in the resource default media type).
+//
+// Action may appear in Resource.
+//
+// Action accepts two arguments: the name of the action and its defining DSL.
+//
+// Example:
 //
 //    Action("Update", func() {
 //        Description("Update account")
